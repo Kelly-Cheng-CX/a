@@ -1,0 +1,16 @@
+logger:
+  name: python2021
+  level: DEBUG
+  file: python01.txt
+
+excel:
+  file: cases.xlsx
+  sheet: login
+
+request:
+  method: post
+
+demo:
+  - 小鹿
+  - 鹿晗
+  - 易烊千玺
