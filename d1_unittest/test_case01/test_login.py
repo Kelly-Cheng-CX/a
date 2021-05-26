@@ -5,7 +5,6 @@ import ddt
 from common.excel_handler import ExcelHandler
 from common.requests_handler import RequestsHandler
 
-
 # test_data = [
 #     {"url": "http://test.lemonban.com/futureloan/mvc/api/member/login",
 #      "method": "post",
@@ -18,7 +17,9 @@ from common.requests_handler import RequestsHandler
 #      "data": {"mobilephone": "asv", "pwd": "123456"},
 #      "expected": "hello world2"}
 # ]
-test_data = ExcelHandler(r"H:\a\d1_unittest\data\cases.xlsx").read('Sheet1')
+from config.setting import Config
+
+test_data = ExcelHandler(Config.data_path).read('Sheet1')
 print(test_data)
 
 
@@ -39,11 +40,8 @@ class TestLogin(unittest.TestCase):
                                       data_info['method'],
                                       data=eval(data_info['data']),
                                       headers=eval(data_info['headers']))
-        self.assertEqual(res['code'], eval(data_info['expected'])['code'])
+        self.assertEqual(eval(data_info['expected'])['code'], res['code'])
 
 
 if __name__ == '__main__':
     unittest.main()
-
-
-

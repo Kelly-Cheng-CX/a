@@ -31,7 +31,8 @@ class TestRegister(unittest.TestCase):
                              headers=eval(test_data['headers']))
 
         # 断言
-        self.assertEqual(res['error'], test_data['expected'])
+        self.assertEqual( test_data['expected'], res['error'])
+
 
 if __name__ == '__main__':
     unittest.main()

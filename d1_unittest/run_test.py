@@ -15,14 +15,13 @@ import unittest
 import time
 
 from common.HTMLTestRunner import HTMLTestRunner
-
-
+from config.setting import config
 
 """
 1，初始化 testloader
 """
-
 testloader = unittest.TestLoader()
+
 """
  2,查找加载测试用例 
      abspath（__file__）  获取当前文件的绝对路径  
@@ -30,35 +29,38 @@ testloader = unittest.TestLoader()
      join(path+path)    拼接
  testloader.discover(文件夹路径，‘匹配模式默认test_*.py开头’)发现测试用例
 
-"""
+
 
 dir_path = os.path.dirname(os.path.abspath(__file__))  # 当前文件的目录地址
 case_path = os.path.join(dir_path, 'test_case01')
 
-# 加载指定模块 将测试用例 合并到一个总的测试套件里
-# suite = testloader.loadTestsFromModule(test_register)
-# suite2 = testloader.loadTestsFromModule(test_recharge)
-#
-# suite_total = unittest.TestSuite()
-#
-# suite_total.addTests(suite)
-#
-# suite_total.addTests(suite2)
-suite_total = testloader.discover(case_path)
+加载指定模块 将测试用例 合并到一个总的测试套件里
+suite = testloader.loadTestsFromModule(test_register)
+suite2 = testloader.loadTestsFromModule(test_recharge)
+
+suite_total = unittest.TestSuite()
+
+suite_total.addTests(suite)
+
+suite_total.addTests(suite2)
+
+"""
+
+# 跑哪个路径文件下的case
+suite_total = testloader.discover(config.case_path)
 
 print(suite_total)
 """
 生成测试报告
 """
-report_path = os.path.join(dir_path, "report")
-if not os.path.exists(report_path):
-    os.mkdir(report_path)
+if not os.path.exists(config.report_path):
+    os.mkdir(config.report_path)
 
 ts = str(int(time.time()))
 
 file_name = 'test_result{}.html'.format(ts)
 
-file_path = os.path.join(report_path, file_name)
+file_path = os.path.join(config.report_path, file_name)
 
 # TODO ：一定要使用二进制的方式打开
 with open(file_path, 'w', encoding='utf-8') as f:
@@ -67,3 +69,6 @@ with open(file_path, 'w', encoding='utf-8') as f:
                             description='真的帅')
     # 运行测试用例
     runner.run(suite_total)
+
+if __name__ == '__main__':
+    unittest.main()
