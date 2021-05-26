@@ -1,7 +1,5 @@
 import unittest
-
-import ddt
-
+from common import ddt
 from common.excel_handler import ExcelHandler
 from common.requests_handler import RequestsHandler
 
