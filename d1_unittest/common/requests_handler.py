@@ -6,6 +6,7 @@ class RequestsHandler:
 
     def __init__(self):
         self.session = requests.Session()
+
         """
         访问一个接口，可以使用get/post/put/...请求
         请求方法：method
@@ -19,3 +20,8 @@ class RequestsHandler:
             return res.json()
         except ValueError:
             print("NOT JSON error")
+
+    def close_session(self):
+        self.session.close()
+
+

@@ -13,9 +13,10 @@ testloader.discover(文件夹路径，‘匹配模式默认test_*.py开头’)�
 import os
 import unittest
 import time
-from Lib.HTMLTestRunner import HTMLTestRunner
 
-from d1_unittest.test_case01 import test_register, test_recharge
+from common.HTMLTestRunner import HTMLTestRunner
+
+
 
 """
 1，初始化 testloader

@@ -1,11 +1,11 @@
 import unittest
-from Lib.HTMLTestRunner import HTMLTestRunner
 
 import ddt
-import requests
 
-from d1_unittest.common.excel_handler import ExcelHandler
-from d1_unittest.common.requests_handler import RequestsHandler
+from common.excel_handler import ExcelHandler
+from common.requests_handler import RequestsHandler
+
+
 # test_data = [
 #     {"url": "http://test.lemonban.com/futureloan/mvc/api/member/login",
 #      "method": "post",
@@ -18,7 +18,7 @@ from d1_unittest.common.requests_handler import RequestsHandler
 #      "data": {"mobilephone": "asv", "pwd": "123456"},
 #      "expected": "hello world2"}
 # ]
-test_data = ExcelHandler(r"H:\a\cases.xlsx").read('Sheet1')
+test_data = ExcelHandler(r"H:\a\d1_unittest\data\cases.xlsx").read('Sheet1')
 print(test_data)
 
 
@@ -39,8 +39,11 @@ class TestLogin(unittest.TestCase):
                                       data_info['method'],
                                       data=eval(data_info['data']),
                                       headers=eval(data_info['headers']))
-        self.assertEqual(res, eval(data_info['expected']))
+        self.assertEqual(res['code'], eval(data_info['expected'])['code'])
 
 
 if __name__ == '__main__':
     unittest.main()
+
+
+
