@@ -10,7 +10,7 @@ class Config:
 
 
 class DevConfig(Config):
-    # 域名地址
+    # 域名地址1
     host = 'https://sso-qa.gaiaworkforce.com'
     host1 = 'http://test.lemonban.com/futureloan/mvc/api/member'
 
