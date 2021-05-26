@@ -32,7 +32,7 @@ class TestLogin(unittest.TestCase):
     def tearDown(self):
         print("后置条件测试用例执行完毕")
 
-    # 将*test_data当中的一组测试数据 赋予到data_info这个参数 相当于for循环
+    # 将*test_data当中的一组测试数据 赋予到data_info这个参数 相当于for循环1
     @ddt.data(*test_data)
     def test_login_success(self, data_info):
         res = RequestsHandler().visit(data_info['url'],
