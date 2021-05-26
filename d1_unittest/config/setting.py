@@ -7,6 +7,8 @@ import os
  testloader.discover(文件夹路径，‘匹配模式默认test_*.py开头’)发现测试用例
 
 """
+
+
 class Config:
     # 得到当前项目路径
     root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,10 +29,22 @@ class Config:
     # except Exception as err:  # 如果某个异常不知道，且不是前面两个异常，可以用这个必杀技解决
     #     pass
 
+
 class DevConfig(Config):
     # 域名地址1
     host = 'https://sso-qa.gaiaworkforce.com'
     host1 = 'http://test.lemonban.com/futureloan/mvc/api/member'
 
 
+class LoggerConfig:
+    logger_name = 'python01'
+    logger_file = 'python01.txt'
+    level = 'DEBUG'
+
+
+class ProductLoggerConfig(LoggerConfig):
+    level = 'WARNING'
+
+
 config = DevConfig()
+loggerConfig = LoggerConfig()
